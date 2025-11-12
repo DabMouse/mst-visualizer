@@ -1,145 +1,97 @@
-MST Nexus
+# MST Nexus
 
-Interactive Minimum Spanning Tree Visualizer
+MST Nexus is a client-side web application for visualizing and exploring minimum spanning tree algorithms on weighted undirected graphs. The application presents algorithm execution as a sequence of steps, highlights edges under consideration, and reports the final minimum spanning tree and its total weight.
 
-A web application that allows users to visualize, explore, and interact with minimum spanning tree (MST) algorithms (such as Kruskal’s algorithm and Prim’s algorithm) on weighted undirected graphs.
+## Features
 
-Live demo: mst-nexus.lovable.app
+- Interactive visualization of Kruskal and Prim implementations.
+- Step-by-step playback with controls to advance, pause, and reset.
+- Visual indicators for considered, accepted, and rejected edges.
+- Import and edit graph topology and edge weights through the UI.
+- Responsive interface and modular components to simplify extension.
 
-🧠 Why this project?
+## Demo
 
-MSTs form a fundamental concept in graph theory: a spanning tree of a connected, undirected, weighted graph whose total edge-weight is minimum. 
-Wikipedia
-+2
-W3Schools
-+2
+If a public demo is available, include the URL here. Otherwise run the application locally using the instructions below.
 
-Visualising how MST algorithms proceed step-by-step helps learners understand greedy algorithms, cycle detection, and graph connectivity.
+## Technology
 
-As a VLSI/CS student (you) with interest in algorithms and modelling, having an interactive tool strengthens understanding of foundational algorithmic design — useful when you tackle larger topics in modelling, circuit graphs, network design, etc.
+- Frontend: React with TypeScript
+- Build tool: Vite
+- Styling: Tailwind CSS
+- Rendering: SVG or Canvas for graph visuals
 
-✅ Features
+Source code and main responsibilities:
 
-Draw or import a weighted undirected graph (nodes + weighted edges).
+- Visualization page and orchestration: `src/pages/Visualizer.tsx`
+- Reusable UI components: `src/components` and `src/components/ui`
+- Algorithms and utilities: `src/utils` and `src/lib`
 
-Choose algorithm: Kruskal’s, Prim’s (possibly other variants).
+## Installation
 
-Step through algorithm: highlight which edge is considered, accepted, or rejected (cycle detection, connectivity).
+Requirements
 
-Show final MST, total weight, and possibly compare different runs/algorithms.
+- Node.js 16 or later
+- npm, yarn, or bun
 
-Responsive UI, visual colour cues, animations to illustrate how the MST “grows”.
+Steps
 
-(Optional) Customisation: add/remove nodes/edges, change weights, random graph generation, reset.
-
-📦 Tech Stack
-
-Frontend: (specify) e.g., React / Vue / vanilla JavaScript + HTML5 Canvas / SVG for graph drawing.
-
-Graph layout: force-directed or manual positioning.
-
-Algorithm logic: implementation of Kruskal’s & Prim’s in JavaScript/TypeScript.
-
-Styling: CSS/SCSS (responsive design).
-
-Hosting: (specify) e.g., deployed via lovable.app; maybe static site.
-
-(Optional) Backend: none or simple serverless if needed for graph upload/saving.
-
-🛠 Installation & Setup
-
-Clone the repo and run locally for development.
-
-git clone https://github.com/<your-username>/mst-nexus.git
-cd mst-nexus
-# install dependencies
+```powershell
+git clone https://github.com/DabMouse/mst-visualizer.git
+cd mst-visualizer
 npm install
-# start dev server
 npm run dev
+```
 
+Open the local address printed by Vite in a browser to use the application.
 
-Build for production:
+To create a production build:
 
+```powershell
 npm run build
-# then deploy to your hosting platform
+```
 
+## Usage
 
-Dependencies:
+1. Open the application in a browser.
+2. Create a graph by adding nodes and edges or import a saved graph if supported.
+3. Choose an algorithm (Kruskal or Prim) from the control panel.
+4. Use playback controls to step through the algorithm and observe visual highlights.
+5. Review the final minimum spanning tree and the computed total weight.
 
-Node.js (>= version)
+## Development notes
 
-npm / yarn
+- Modify visualization logic in `src/pages/Visualizer.tsx`.
+- Shared UI primitives are under `src/components/ui`.
+- Hooks and utilities are in `src/hooks` and `src/lib`.
+- New algorithms should emit a sequence of step objects compatible with the visualization state.
 
-(List any major libraries e.g., d3.js, vis.js, react, etc.)
+Recommended workflow
 
-🧮 Usage
+1. Create a feature branch for changes.
+2. Implement the feature and add tests where appropriate.
+3. Run the development server and verify behavior.
+4. Submit a pull request with a clear description and screenshots if useful.
 
-Open the app in your browser (e.g., http://localhost:3000).
+## Contributing
 
-Create a graph:
+Contributions are welcome. When contributing, follow existing code conventions and provide tests for new behavior where applicable. Open an issue to discuss larger changes before implementing them.
 
-Add nodes via button.
+## License
 
-Connect nodes with edges, assign weights.
+Choose and include an open source license for the project. If a `LICENSE` file exists, ensure the license name here matches that file.
 
-Optionally generate a random graph.
+Example
 
-Choose algorithm (Kruskal or Prim).
+```
+MIT License
+See the LICENSE file for details.
+```
 
-Press Start or Next Step to progress through the algorithm.
+## Contact
 
-The edge being considered is highlighted.
+For issues, feature requests, or questions, open an issue or submit a pull request in this repository.
 
-If accepted into MST, it turns green (for example). If rejected (cycle or higher weight), it turns red.
+## Acknowledgments
 
-After finishing, view the resulting MST, total weight, maybe highlight unused edges.
-
-Reset or modify the graph to try other scenarios.
-
-🎯 Why this is helpful for learners
-
-Bridges the gap between abstract pseudocode and dynamic execution.
-
-Visual cues (highlighting, step-by-step) make the greedy decisions more intuitive.
-
-By trying different graphs (dense vs sparse, equal weights vs distinct weights), users can experiment and internalise algorithmic principles such as the cut-property or cycle‐property of MST. 
-algs4.cs.princeton.edu
-+1
-
-As a student of VLSI and systems design, these graph algorithms can map to network design, circuit interconnect optimisation, and other modelling tasks.
-
-🧩 Future / Enhancements
-
-Support for dynamic graphs (adding/removing edges during execution).
-
-Visual comparison of multiple algorithms side-by-side (Kruskal vs Prim).
-
-Export of graph as JSON / import of saved graphs.
-
-Larger graphs: performance optimisation for hundreds of nodes.
-
-Animation speed control, step-backwards ability.
-
-Add other MST algorithms (e.g., Borůvka’s algorithm) or MST variants (minimum bottleneck spanning tree, etc.).
-
-Mobile/touch-friendly interface.
-
-📄 Licence
-
-Specify your licence (MIT, Apache 2.0, etc).
-Example:
-
-MIT Licence – see LICENSE file for details.
-
-🧑‍💻 Contributors
-
-Sharvil – initial development, UI design, algorithm logic.
-
-(If others) list contributors.
-
-📬 Contact
-
-If you find any issues, bugs, or have feature requests, please open an issue or submit a pull-request.
-You can also reach me at: [your email or contact link]
-
-Thanks for checking out MST Nexus — happy visualising and learning! 🚀
+This project is intended as a teaching and experimentation tool to demonstrate greedy graph algorithms and their behavior on different graph topologies.
