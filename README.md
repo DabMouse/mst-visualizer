@@ -1,73 +1,145 @@
-# Welcome to your Lovable project
+MST Nexus
 
-## Project info
+Interactive Minimum Spanning Tree Visualizer
 
-**URL**: https://lovable.dev/projects/ee83522e-6a6c-4188-b838-b2abb46a8e20
+A web application that allows users to visualize, explore, and interact with minimum spanning tree (MST) algorithms (such as Kruskal’s algorithm and Prim’s algorithm) on weighted undirected graphs.
 
-## How can I edit this code?
+Live demo: mst-nexus.lovable.app
 
-There are several ways of editing your application.
+🧠 Why this project?
 
-**Use Lovable**
+MSTs form a fundamental concept in graph theory: a spanning tree of a connected, undirected, weighted graph whose total edge-weight is minimum. 
+Wikipedia
++2
+W3Schools
++2
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/ee83522e-6a6c-4188-b838-b2abb46a8e20) and start prompting.
+Visualising how MST algorithms proceed step-by-step helps learners understand greedy algorithms, cycle detection, and graph connectivity.
 
-Changes made via Lovable will be committed automatically to this repo.
+As a VLSI/CS student (you) with interest in algorithms and modelling, having an interactive tool strengthens understanding of foundational algorithmic design — useful when you tackle larger topics in modelling, circuit graphs, network design, etc.
 
-**Use your preferred IDE**
+✅ Features
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+Draw or import a weighted undirected graph (nodes + weighted edges).
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+Choose algorithm: Kruskal’s, Prim’s (possibly other variants).
 
-Follow these steps:
+Step through algorithm: highlight which edge is considered, accepted, or rejected (cycle detection, connectivity).
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+Show final MST, total weight, and possibly compare different runs/algorithms.
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+Responsive UI, visual colour cues, animations to illustrate how the MST “grows”.
 
-# Step 3: Install the necessary dependencies.
-npm i
+(Optional) Customisation: add/remove nodes/edges, change weights, random graph generation, reset.
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+📦 Tech Stack
+
+Frontend: (specify) e.g., React / Vue / vanilla JavaScript + HTML5 Canvas / SVG for graph drawing.
+
+Graph layout: force-directed or manual positioning.
+
+Algorithm logic: implementation of Kruskal’s & Prim’s in JavaScript/TypeScript.
+
+Styling: CSS/SCSS (responsive design).
+
+Hosting: (specify) e.g., deployed via lovable.app; maybe static site.
+
+(Optional) Backend: none or simple serverless if needed for graph upload/saving.
+
+🛠 Installation & Setup
+
+Clone the repo and run locally for development.
+
+git clone https://github.com/<your-username>/mst-nexus.git
+cd mst-nexus
+# install dependencies
+npm install
+# start dev server
 npm run dev
-```
 
-**Edit a file directly in GitHub**
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+Build for production:
 
-**Use GitHub Codespaces**
+npm run build
+# then deploy to your hosting platform
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
 
-## What technologies are used for this project?
+Dependencies:
 
-This project is built with:
+Node.js (>= version)
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+npm / yarn
 
-## How can I deploy this project?
+(List any major libraries e.g., d3.js, vis.js, react, etc.)
 
-Simply open [Lovable](https://lovable.dev/projects/ee83522e-6a6c-4188-b838-b2abb46a8e20) and click on Share -> Publish.
+🧮 Usage
 
-## Can I connect a custom domain to my Lovable project?
+Open the app in your browser (e.g., http://localhost:3000).
 
-Yes, you can!
+Create a graph:
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+Add nodes via button.
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Connect nodes with edges, assign weights.
+
+Optionally generate a random graph.
+
+Choose algorithm (Kruskal or Prim).
+
+Press Start or Next Step to progress through the algorithm.
+
+The edge being considered is highlighted.
+
+If accepted into MST, it turns green (for example). If rejected (cycle or higher weight), it turns red.
+
+After finishing, view the resulting MST, total weight, maybe highlight unused edges.
+
+Reset or modify the graph to try other scenarios.
+
+🎯 Why this is helpful for learners
+
+Bridges the gap between abstract pseudocode and dynamic execution.
+
+Visual cues (highlighting, step-by-step) make the greedy decisions more intuitive.
+
+By trying different graphs (dense vs sparse, equal weights vs distinct weights), users can experiment and internalise algorithmic principles such as the cut-property or cycle‐property of MST. 
+algs4.cs.princeton.edu
++1
+
+As a student of VLSI and systems design, these graph algorithms can map to network design, circuit interconnect optimisation, and other modelling tasks.
+
+🧩 Future / Enhancements
+
+Support for dynamic graphs (adding/removing edges during execution).
+
+Visual comparison of multiple algorithms side-by-side (Kruskal vs Prim).
+
+Export of graph as JSON / import of saved graphs.
+
+Larger graphs: performance optimisation for hundreds of nodes.
+
+Animation speed control, step-backwards ability.
+
+Add other MST algorithms (e.g., Borůvka’s algorithm) or MST variants (minimum bottleneck spanning tree, etc.).
+
+Mobile/touch-friendly interface.
+
+📄 Licence
+
+Specify your licence (MIT, Apache 2.0, etc).
+Example:
+
+MIT Licence – see LICENSE file for details.
+
+🧑‍💻 Contributors
+
+Sharvil – initial development, UI design, algorithm logic.
+
+(If others) list contributors.
+
+📬 Contact
+
+If you find any issues, bugs, or have feature requests, please open an issue or submit a pull-request.
+You can also reach me at: [your email or contact link]
+
+Thanks for checking out MST Nexus — happy visualising and learning! 🚀
