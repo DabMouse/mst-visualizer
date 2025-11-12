@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Plus, Trash2 } from 'lucide-react';
-import { GraphNode, Edge } from '@/utils/graphAlgorithms';
+import { GraphNode, Edge, nodeIdToLabel, labelToNodeId } from '@/utils/graphAlgorithms';
 import { toast } from 'sonner';
 
 interface GraphInputProps {
@@ -41,17 +41,32 @@ export const GraphInput = ({ onGraphUpdate }: GraphInputProps) => {
   };
 
   const handleAddEdge = () => {
-    const from = parseInt(edgeInput.from);
-    const to = parseInt(edgeInput.to);
+    // Convert letter inputs to numeric IDs
+    let from: number;
+    let to: number;
+    
+    // Check if input is a letter or number
+    if (/^[a-zA-Z]$/.test(edgeInput.from)) {
+      from = labelToNodeId(edgeInput.from);
+    } else {
+      from = parseInt(edgeInput.from);
+    }
+
+    if (/^[a-zA-Z]$/.test(edgeInput.to)) {
+      to = labelToNodeId(edgeInput.to);
+    } else {
+      to = parseInt(edgeInput.to);
+    }
+
     const weight = parseInt(edgeInput.weight);
 
     if (isNaN(from) || isNaN(to) || isNaN(weight)) {
-      toast.error('Please enter valid numbers');
+      toast.error('Please enter valid node labels (A-Z) or numbers');
       return;
     }
 
     if (from < 0 || from >= nodeCount || to < 0 || to >= nodeCount) {
-      toast.error(`Node IDs must be between 0 and ${nodeCount - 1}`);
+      toast.error(`Nodes must be between A and ${nodeIdToLabel(nodeCount - 1)}`);
       return;
     }
 
@@ -125,19 +140,21 @@ export const GraphInput = ({ onGraphUpdate }: GraphInputProps) => {
         </div>
 
         <div className="border-t border-border pt-4">
-          <Label className="mb-3 block">Add Edge</Label>
+          <Label className="mb-3 block">Add Edge (use letters A-Z or numbers)</Label>
           <div className="grid grid-cols-4 gap-2">
             <Input
-              placeholder="From"
-              type="number"
+              placeholder="From (A)"
+              type="text"
               value={edgeInput.from}
               onChange={(e) => setEdgeInput({ ...edgeInput, from: e.target.value })}
+              maxLength={1}
             />
             <Input
-              placeholder="To"
-              type="number"
+              placeholder="To (B)"
+              type="text"
               value={edgeInput.to}
               onChange={(e) => setEdgeInput({ ...edgeInput, to: e.target.value })}
+              maxLength={1}
             />
             <Input
               placeholder="Weight"
@@ -160,7 +177,7 @@ export const GraphInput = ({ onGraphUpdate }: GraphInputProps) => {
                 className="flex items-center justify-between bg-card/50 p-2 rounded border border-border"
               >
                 <span className="text-sm">
-                  {edge.from} → {edge.to} (weight: {edge.weight})
+                  {nodeIdToLabel(edge.from)} → {nodeIdToLabel(edge.to)} (weight: {edge.weight})
                 </span>
                 <Button
                   onClick={() => handleRemoveEdge(idx)}

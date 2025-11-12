@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { GraphNode, Edge, AlgorithmStep } from '@/utils/graphAlgorithms';
+import { GraphNode, Edge, AlgorithmStep, nodeIdToLabel } from '@/utils/graphAlgorithms';
 
 interface GraphCanvasProps {
   nodes: GraphNode[];
@@ -103,7 +103,7 @@ export const GraphCanvas = ({ nodes, edges, currentStep, mstEdges }: GraphCanvas
               dominantBaseline="middle"
               className="fill-foreground text-lg font-bold pointer-events-none"
             >
-              {node.id}
+              {nodeIdToLabel(node.id)}
             </text>
           </g>
         ))}

@@ -17,6 +17,16 @@ export interface AlgorithmStep {
   totalCost?: number;
 }
 
+// Utility function to convert node ID to alphabet label
+export const nodeIdToLabel = (id: number): string => {
+  return String.fromCharCode(65 + id); // 65 is ASCII for 'A'
+};
+
+// Utility function to convert alphabet label to node ID
+export const labelToNodeId = (label: string): number => {
+  return label.toUpperCase().charCodeAt(0) - 65;
+};
+
 // Union-Find data structure for Kruskal's algorithm
 class UnionFind {
   parent: number[];
@@ -85,7 +95,7 @@ export function primsAlgorithm(nodes: GraphNode[], edges: Edge[]): AlgorithmStep
     steps.push({
       type: 'consider',
       edge: minEdge,
-      message: `Considering edge ${minEdge.from}-${minEdge.to} (weight: ${minEdge.weight})`,
+      message: `Considering edge ${nodeIdToLabel(minEdge.from)}-${nodeIdToLabel(minEdge.to)} (weight: ${minEdge.weight})`,
     });
 
     totalCost += minEdge.weight;
@@ -96,7 +106,7 @@ export function primsAlgorithm(nodes: GraphNode[], edges: Edge[]): AlgorithmStep
     steps.push({
       type: 'add',
       edge: minEdge,
-      message: `Added edge ${minEdge.from}-${minEdge.to} to MST`,
+      message: `Added edge ${nodeIdToLabel(minEdge.from)}-${nodeIdToLabel(minEdge.to)} to MST`,
       totalCost,
     });
   }
@@ -126,7 +136,7 @@ export function kruskalsAlgorithm(nodes: GraphNode[], edges: Edge[]): AlgorithmS
     steps.push({
       type: 'consider',
       edge,
-      message: `Considering edge ${edge.from}-${edge.to} (weight: ${edge.weight})`,
+      message: `Considering edge ${nodeIdToLabel(edge.from)}-${nodeIdToLabel(edge.to)} (weight: ${edge.weight})`,
     });
 
     if (uf.union(edge.from, edge.to)) {
@@ -136,7 +146,7 @@ export function kruskalsAlgorithm(nodes: GraphNode[], edges: Edge[]): AlgorithmS
       steps.push({
         type: 'add',
         edge,
-        message: `Added edge ${edge.from}-${edge.to} to MST (no cycle)`,
+        message: `Added edge ${nodeIdToLabel(edge.from)}-${nodeIdToLabel(edge.to)} to MST (no cycle)`,
         totalCost,
       });
 
@@ -145,7 +155,7 @@ export function kruskalsAlgorithm(nodes: GraphNode[], edges: Edge[]): AlgorithmS
       steps.push({
         type: 'reject',
         edge,
-        message: `Rejected edge ${edge.from}-${edge.to} (creates cycle)`,
+        message: `Rejected edge ${nodeIdToLabel(edge.from)}-${nodeIdToLabel(edge.to)} (creates cycle)`,
         totalCost,
       });
     }
@@ -205,7 +215,7 @@ export function reverseDeleteAlgorithm(nodes: GraphNode[], edges: Edge[]): Algor
     steps.push({
       type: 'consider',
       edge,
-      message: `Considering removal of edge ${edge.from}-${edge.to} (weight: ${edge.weight})`,
+      message: `Considering removal of edge ${nodeIdToLabel(edge.from)}-${nodeIdToLabel(edge.to)} (weight: ${edge.weight})`,
     });
 
     const tempEdges = remainingEdges.filter(
@@ -224,14 +234,14 @@ export function reverseDeleteAlgorithm(nodes: GraphNode[], edges: Edge[]): Algor
       steps.push({
         type: 'reject',
         edge,
-        message: `Removed edge ${edge.from}-${edge.to} (graph stays connected)`,
+        message: `Removed edge ${nodeIdToLabel(edge.from)}-${nodeIdToLabel(edge.to)} (graph stays connected)`,
         totalCost,
       });
     } else {
       steps.push({
         type: 'add',
         edge,
-        message: `Kept edge ${edge.from}-${edge.to} (removal disconnects graph)`,
+        message: `Kept edge ${nodeIdToLabel(edge.from)}-${nodeIdToLabel(edge.to)} (removal disconnects graph)`,
         totalCost,
       });
     }
